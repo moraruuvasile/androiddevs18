@@ -1,5 +1,8 @@
 package com.example.androiddevs18.ui.shoppinglist
 
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.example.androiddevs18.data.db.entities.ShoppingItem
 import com.example.androiddevs18.data.repositories.ShoppingRepository
@@ -7,9 +10,12 @@ import com.example.androiddevs18.data.repositories.ShoppingRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class ShoppingViewModel(
-    private val repository: ShoppingRepository
-) : ViewModel() {
+class ShoppingViewModel : AndroidViewModel {
+     val repository: ShoppingRepository
+
+    constructor(application: Application) : super(application) {
+        repository = ShoppingRepository(application)
+    }
 
     fun upsert(item: ShoppingItem) =
         GlobalScope.launch {

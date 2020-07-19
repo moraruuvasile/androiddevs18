@@ -10,7 +10,7 @@ import com.example.androiddevs18.data.db.entities.ShoppingItem
 
 import kotlinx.android.synthetic.main.dialog_add_shopping_item.*
 
-class AddShoppingItemDialog(context: Context, var addDialogListener: AddDialogListener) :
+class AddShoppingItemDialog(context: Context, val itemSend:(ShoppingItem)->Unit) :
     AppCompatDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class AddShoppingItemDialog(context: Context, var addDialogListener: AddDialogLi
             }
 
             val item = ShoppingItem(name, amount)
-            addDialogListener.onAddButtonClicked(item)
+            itemSend(item)
             dismiss()
         }
 
