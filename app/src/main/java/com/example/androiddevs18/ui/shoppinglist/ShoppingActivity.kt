@@ -11,14 +11,17 @@ import com.example.androiddevs18.data.db.entities.ShoppingItem
 import com.example.androiddevs18.other.ShoppingItemAdapter
 
 import kotlinx.android.synthetic.main.activity_shopping.*
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class ShoppingActivity : AppCompatActivity(), KodeinAware {
+class ShoppingActivity() : AppCompatActivity(), KodeinAware {
+
 
     override val kodein by kodein()
     private val factory: ShoppingViewModelFactory by instance()
+
 
     lateinit var viewModel: ShoppingViewModel
 

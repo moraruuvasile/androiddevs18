@@ -1,4 +1,4 @@
-package com.androiddevs.grocerylist
+package com.example.androiddevs18
 
 import android.app.Application
 import com.example.androiddevs18.data.db.ShoppingDatabase
@@ -19,14 +19,10 @@ class ShoppingApplication: Application(), KodeinAware {
         import(androidXModule(this@ShoppingApplication))
         bind() from singleton { ShoppingDatabase(instance()) }
         bind() from singleton {
-            ShoppingRepository(
-                instance()
-            )
+            ShoppingRepository(instance())
         }
-        bind() from provider {
-            ShoppingViewModelFactory(
-                instance()
-            )
+        bind() from singleton {
+            ShoppingViewModelFactory(instance())
         }
     }
 }
