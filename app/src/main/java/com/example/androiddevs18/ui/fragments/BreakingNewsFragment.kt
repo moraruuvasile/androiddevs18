@@ -24,17 +24,17 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
+        viewModel.breakingNews.observe(viewLifecycleOwner, Observer {
+            when(it) {
                 is Resource.Success -> {
                     hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles)
+                    it.data?.let {
+                        newsAdapter.differ.submitList(it.articles)
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
-                    response.message?.let { message ->
+                    it.message?.let { message ->
                         Log.e(TAG, "An error occured: $message")
                     }
                 }
